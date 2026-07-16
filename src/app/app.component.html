@@ -1,7 +1,47 @@
 <div class="container">
 	<h1>Prueba técnica - Estudio Faser</h1>
 	<h2>Listado de tareas</h2>
-	<ol>
-		<li *ngFor="let tarea of tareas">{{tarea.titulo}} ({{tarea.minutos}} minutos)</li>
-	</ol>
+	
+	<table>
+    	<thead>
+			<tr>
+				<th>ID</th>
+				<th>Título</th>
+				<th>Minutos</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let tarea of tareas">
+				<td>{{ tarea?.id }}</td>
+				<td>{{ tarea?.titulo }}</td>
+				<td>{{ tarea?.minutos }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<button class="btnAgregar" (click)="abrirModal()">
+		Nueva Tarea
+	</button>
+</div>
+
+<div class="modal-overlay" *ngIf="mostrarModal" (click)="cerrarModal()">
+	<div class="modal-content" (click)="$event.stopPropagation()">
+		<h2>Agregar Nueva Tarea</h2>
+		
+		<div class="form-group">
+			<label>Título:</label>
+			<input type="text" [(ngModel)]="nuevaTarea.titulo" placeholder="Ingresa el título">
+		</div>
+
+		<div class="form-group">
+			<label>Minutos:</label>
+			<input type="number" [(ngModel)]="nuevaTarea.minutos" placeholder="Ingresa los minutos">
+		</div>
+
+		<div class="modal-buttons">
+			<button class="btnLimpiar" (click)="limpiarFormulario()">Limpiar</button>
+			<button class="btnAgregarModal" (click)="agregarTarea()">Agregar</button>
+			<button class="btnCerrar" (click)="cerrarModal()">Cerrar</button>
+		</div>
+	</div>
 </div>

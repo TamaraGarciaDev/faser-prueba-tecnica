@@ -3,9 +3,7 @@ import { Tarea } from './tarea';
 
 @Injectable()
 export class AppService { 
-    constructor(
-        
-    ) { }
+    constructor() { }
 
     public async obtenerTareas() {
         try {
